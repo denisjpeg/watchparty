@@ -1,0 +1,277 @@
+/* DuoParty Injected Floating Widget Styles */
+
+#duoparty-widget-container {
+  position: fixed;
+  top: 24px;
+  right: 24px;
+  z-index: 2147483647;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  user-select: none;
+  pointer-events: auto;
+}
+
+.duoparty-widget {
+  background: rgba(18, 18, 24, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+  width: 280px;
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease, height 0.2s ease;
+  overflow: hidden;
+}
+
+.duoparty-widget.minimized .duoparty-body {
+  display: none;
+}
+
+.duoparty-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  cursor: grab;
+}
+
+.duoparty-header:active {
+  cursor: grabbing;
+}
+
+.duoparty-title-area {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.duoparty-logo {
+  font-size: 16px;
+}
+
+.duoparty-title {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  color: #f1f1f1;
+}
+
+.duoparty-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 10px;
+  padding: 2px 7px;
+  border-radius: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.duoparty-badge.connected {
+  background: rgba(46, 204, 113, 0.2);
+  color: #2ecc71;
+  border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.duoparty-badge.disconnected {
+  background: rgba(231, 76, 60, 0.2);
+  color: #e74c3c;
+  border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.duoparty-badge.connecting {
+  background: rgba(241, 196, 15, 0.2);
+  color: #f1c40f;
+  border: 1px solid rgba(241, 196, 15, 0.3);
+}
+
+.duoparty-badge .dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: currentColor;
+}
+
+.duoparty-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.duoparty-icon-btn {
+  background: none;
+  border: none;
+  color: #a0a0a0;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.duoparty-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.duoparty-body {
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* User cards & Voice indicators */
+.duoparty-users {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.duoparty-user-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  padding: 10px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.duoparty-user-card.speaking {
+  border-color: #2ecc71;
+  box-shadow: 0 0 12px rgba(46, 204, 113, 0.35);
+}
+
+.duoparty-avatar-wrap {
+  position: relative;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 700;
+  color: white;
+}
+
+.duoparty-user-card.partner .duoparty-avatar-wrap {
+  background: linear-gradient(135deg, #ec4899, #f43f5e);
+}
+
+.duoparty-speaking-ring {
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  border: 2px solid #2ecc71;
+  opacity: 0;
+  transform: scale(0.9);
+  transition: all 0.2s ease;
+}
+
+.duoparty-user-card.speaking .duoparty-speaking-ring {
+  opacity: 1;
+  transform: scale(1.1);
+  animation: pulse-ring 1.2s infinite ease-out;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.18); opacity: 0.4; }
+  100% { transform: scale(1); opacity: 0.9; }
+}
+
+.duoparty-user-name {
+  font-size: 11px;
+  font-weight: 500;
+  color: #e2e8f0;
+  max-width: 90px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.duoparty-user-status {
+  font-size: 10px;
+  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+/* Controls section */
+.duoparty-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.duoparty-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.duoparty-btn-mic {
+  background: #3b82f6;
+  color: white;
+}
+
+.duoparty-btn-mic:hover {
+  background: #2563eb;
+}
+
+.duoparty-btn-mic.muted {
+  background: #dc2626;
+}
+
+.duoparty-btn-mic.muted:hover {
+  background: #b91c1c;
+}
+
+.duoparty-btn-sync {
+  background: rgba(255, 255, 255, 0.1);
+  color: #f1f5f9;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.duoparty-btn-sync:hover {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+/* Event banner */
+.duoparty-banner {
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 11px;
+  color: #94a3b8;
+  text-align: center;
+  min-height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.2s ease;
+}
+
+.duoparty-banner.highlight {
+  color: #38bdf8;
+  font-weight: 500;
+}
